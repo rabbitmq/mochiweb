@@ -121,12 +121,12 @@ call_body({M, F}, Req) ->
 call_body(Body, Req) ->
     Body(Req).
 
--spec handle_invalid_request(term()) -> no_return().
+%% -spec handle_invalid_request(term()) -> no_return().
 handle_invalid_request(Socket) ->
     handle_invalid_request(Socket, {'GET', {abs_path, "/"}, {0,9}}, []),
     exit(normal).
 
--spec handle_invalid_request(term(), term(), term()) -> no_return().
+%% -spec handle_invalid_request(term(), term(), term()) -> no_return().
 handle_invalid_request(Socket, Request, RevHeaders) ->
     Req = new_request(Socket, Request, RevHeaders),
     Req:respond({400, [], []}),

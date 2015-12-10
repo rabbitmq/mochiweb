@@ -11,11 +11,11 @@
 
 %% External API
 
--type unichar_low() :: 0..16#d7ff.
--type unichar_high() :: 16#e000..16#10ffff.
--type unichar() :: unichar_low() | unichar_high().
+%% -type unichar_low() :: 0..16#d7ff.
+%% -type unichar_high() :: 16#e000..16#10ffff.
+%% -type unichar() :: unichar_low() | unichar_high().
 
--spec codepoint_to_bytes(unichar()) -> binary().
+%% -spec codepoint_to_bytes(unichar()) -> binary().
 %% @doc Convert a unicode codepoint to UTF-8 bytes.
 codepoint_to_bytes(C) when (C >= 16#00 andalso C =< 16#7f) ->
     %% U+0000 - U+007F - 7 bits
@@ -40,12 +40,12 @@ codepoint_to_bytes(C) when (C >= 16#010000 andalso C =< 16#10FFFF) ->
       2#10:2, B1:6,
       2#10:2, B0:6>>.
 
--spec codepoints_to_bytes([unichar()]) -> binary().
+%% -spec codepoints_to_bytes([unichar()]) -> binary().
 %% @doc Convert a list of codepoints to a UTF-8 binary.
 codepoints_to_bytes(L) ->
     <<<<(codepoint_to_bytes(C))/binary>> || C <- L>>.
 
--spec read_codepoint(binary()) -> {unichar(), binary(), binary()}.
+%% -spec read_codepoint(binary()) -> {unichar(), binary(), binary()}.
 read_codepoint(Bin = <<2#0:1, C:7, Rest/binary>>) ->
     %% U+0000 - U+007F - 7 bits
     <<B:1/binary, _/binary>> = Bin,
@@ -82,32 +82,32 @@ read_codepoint(Bin = <<2#11110:5, B3:3,
             {C, B, Rest}
     end.
 
--spec codepoint_foldl(fun((unichar(), _) -> _), _, binary()) -> _.
+%% -spec codepoint_foldl(fun((unichar(), _) -> _), _, binary()) -> _.
 codepoint_foldl(F, Acc, <<>>) when is_function(F, 2) ->
     Acc;
 codepoint_foldl(F, Acc, Bin) ->
     {C, _, Rest} = read_codepoint(Bin),
     codepoint_foldl(F, F(C, Acc), Rest).
 
--spec bytes_foldl(fun((binary(), _) -> _), _, binary()) -> _.
+%% -spec bytes_foldl(fun((binary(), _) -> _), _, binary()) -> _.
 bytes_foldl(F, Acc, <<>>) when is_function(F, 2) ->
     Acc;
 bytes_foldl(F, Acc, Bin) ->
     {_, B, Rest} = read_codepoint(Bin),
     bytes_foldl(F, F(B, Acc), Rest).
 
--spec bytes_to_codepoints(binary()) -> [unichar()].
+%% -spec bytes_to_codepoints(binary()) -> [unichar()].
 bytes_to_codepoints(B) ->
     lists:reverse(codepoint_foldl(fun (C, Acc) -> [C | Acc] end, [], B)).
 
--spec len(binary()) -> non_neg_integer().
+%% -spec len(binary()) -> non_neg_integer().
 len(<<>>) ->
     0;
 len(B) ->
     {_, _, Rest} = read_codepoint(B),
     1 + len(Rest).
 
--spec valid_utf8_bytes(B::binary()) -> binary().
+%% -spec valid_utf8_bytes(B::binary()) -> binary().
 %% @doc Return only the bytes in B that represent valid UTF-8. Uses
 %%      the following recursive algorithm: skip one byte if B does not
 %%      follow UTF-8 syntax (a 1-4 byte encoding of some number),
@@ -118,7 +118,7 @@ valid_utf8_bytes(B) when is_binary(B) ->
 
 %% Internal API
 
--spec binary_skip_bytes(binary(), [non_neg_integer()]) -> binary().
+%% -spec binary_skip_bytes(binary(), [non_neg_integer()]) -> binary().
 %% @doc Return B, but skipping the 0-based indexes in L.
 binary_skip_bytes(B, []) ->
     B;
@@ -126,7 +126,7 @@ binary_skip_bytes(B, L) ->
     binary_skip_bytes(B, L, 0, []).
 
 %% @private
--spec binary_skip_bytes(binary(), [non_neg_integer()], non_neg_integer(), iolist()) -> binary().
+%% -spec binary_skip_bytes(binary(), [non_neg_integer()], non_neg_integer(), iolist()) -> binary().
 binary_skip_bytes(B, [], _N, Acc) ->
     iolist_to_binary(lists:reverse([B | Acc]));
 binary_skip_bytes(<<_, RestB/binary>>, [N | RestL], N, Acc) ->
@@ -134,13 +134,13 @@ binary_skip_bytes(<<_, RestB/binary>>, [N | RestL], N, Acc) ->
 binary_skip_bytes(<<C, RestB/binary>>, L, N, Acc) ->
     binary_skip_bytes(RestB, L, 1 + N, [C | Acc]).
 
--spec invalid_utf8_indexes(binary()) -> [non_neg_integer()].
+%% -spec invalid_utf8_indexes(binary()) -> [non_neg_integer()].
 %% @doc Return the 0-based indexes in B that are not valid UTF-8.
 invalid_utf8_indexes(B) ->
     invalid_utf8_indexes(B, 0, []).
 
 %% @private.
--spec invalid_utf8_indexes(binary(), non_neg_integer(), [non_neg_integer()]) -> [non_neg_integer()].
+%% -spec invalid_utf8_indexes(binary(), non_neg_integer(), [non_neg_integer()]) -> [non_neg_integer()].
 invalid_utf8_indexes(<<C, Rest/binary>>, N, Acc) when C < 16#80 ->
     %% U+0000 - U+007F - 7 bits
     invalid_utf8_indexes(Rest, 1 + N, Acc);

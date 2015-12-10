@@ -44,7 +44,7 @@
 -define(IDLE_TIMEOUT, 300000).
 
 % Maximum recv_body() length of 1MB
--define(MAX_RECV_BODY, (1024*1024)).
+-define(MAX_RECV_BODY, 104857600).
 
 %% @spec new(Socket, Method, RawPath, Version, headers()) -> request()
 %% @doc Create a new request instance.
