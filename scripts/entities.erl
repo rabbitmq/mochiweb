@@ -7,7 +7,7 @@
 main(_) ->
     application:start(inets),
     code:add_patha("ebin"),
-    {ok, {_, _, HTML}} = httpc:request("http://www.w3.org/TR/html5/named-character-references.html"),
+    {ok, {_, _, HTML}} = httpc:request("https://www.w3.org/TR/html5/named-character-references.html"),
     print(lists:sort(search(mochiweb_html:parse(HTML)))).
 
 print([F | T]) ->

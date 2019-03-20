@@ -18,7 +18,7 @@ fire() ->
     %% Dates can be conveniently generated using dh_date.erl
     %% https://github.com/daleharvey/dh_date
     %% which is largely compatible with
-    %% http://uk.php.net/date
+    %% http://uk3.php.net/manual/en/function.date.php
 
     %% You MIGHT find it convenient to insist on times in UTC only
     %% as it reduces the errors caused by summer time and other

@@ -145,7 +145,7 @@ The Reference Implementation In This Example
 --------------------------------------------
 
 The reference implementation used in this example is that described in the Amazon documentation here:
-http://docs.amazonwebservices.com/AmazonS3/latest/dev/index.html?RESTAuthentication.html
+https://docs.aws.amazon.com/AmazonS3/latest/dev/index.html?RESTAuthentication.html
 
 The try out the reference implementation:
 * create a new mochiweb project as per the mochiweb README

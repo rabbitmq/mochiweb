@@ -2,7 +2,7 @@
 %% @copyright 2008 Mochi Media, Inc.
 
 %% @doc String Formatting for Erlang, inspired by Python 2.6
-%%      (<a href="http://www.python.org/dev/peps/pep-3101/">PEP 3101</a>).
+%%      (<a href="https://www.python.org/dev/peps/pep-3101/">PEP 3101</a>).
 %%
 -module(mochifmt).
 -author('bob@mochimedia.com').

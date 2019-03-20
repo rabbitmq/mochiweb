@@ -4,7 +4,7 @@
 %% as far as this module is concerned. In order to achieve more security,
 %% it is advised to use https.
 %% Based on the paper
-%% <a href="http://www.cse.msu.edu/~alexliu/publications/Cookie/cookie.pdf">
+%% <a href="https://www.cse.msu.edu/~alexliu/publications/Cookie/cookie.pdf">
 %% "A Secure Cookie Protocol"</a>.
 %% This module is only supported on R15B02 and later, the AES CFB mode is not
 %% available in earlier releases of crypto.

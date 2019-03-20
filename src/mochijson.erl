@@ -466,7 +466,7 @@ e2j_vec_test() ->
     test_one(e2j_test_vec(utf8), 1).
 
 issue33_test() ->
-    %% http://code.google.com/p/mochiweb/issues/detail?id=33
+    %% https://code.google.com/p/mochiweb/issues/detail?id=33
     Js = {struct, [{"key", [194, 163]}]},
     Encoder = encoder([{input_encoding, utf8}]),
     "{\"key\":\"\\u00a3\"}" = lists:flatten(Encoder(Js)).

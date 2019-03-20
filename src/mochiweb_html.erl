@@ -553,7 +553,7 @@ tokenize_literal(Bin, S=#decoder{offset=O}) ->
                                     orelse C =:= $/
                                     orelse C =:= $= ->
             %% Handle case where tokenize_literal would consume
-            %% 0 chars. http://github.com/mochi/mochiweb/pull/13
+            %% 0 chars. https://github.com/mochi/mochiweb/pull/13
             {[C], ?INC_COL(S)};
         _ ->
             tokenize_literal(Bin, S, [])

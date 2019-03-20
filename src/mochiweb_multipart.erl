@@ -177,7 +177,7 @@ read_more(State=#mp{length=Length, buffer=Buffer, req=Req}) ->
                                   buffer=Buffer1}).
 
 flash_multipart_hack(State=#mp{length=0, buffer=Buffer, boundary=Prefix}) ->
-    %% http://code.google.com/p/mochiweb/issues/detail?id=22
+    %% https://code.google.com/p/mochiweb/issues/detail?id=22
     %% Flash doesn't terminate multipart with \r\n properly so we fix it up here
     PrefixSize = size(Prefix),
     case size(Buffer) - (2 + PrefixSize) of
