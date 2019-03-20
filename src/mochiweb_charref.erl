@@ -30,7 +30,7 @@ charref(L) ->
 %% Internal API.
 
 %% [2011-10-14] Generated from:
-%% http://www.w3.org/TR/html5/named-character-references.html
+%% https://www.w3.org/TR/html5/named-character-references.html
 
 entity("AElig") -> 16#000C6;
 entity("AMP") -> 16#00026;

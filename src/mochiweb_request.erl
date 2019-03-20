@@ -315,7 +315,7 @@ respond({Code, ResponseHeaders, chunked}, {?MODULE, [_Socket, Method, _RawPath, 
     HResponse = mochiweb_headers:make(ResponseHeaders),
     HResponse1 = case Method of
                      'HEAD' ->
-                         %% This is what Google does, http://www.google.com/
+                         %% This is what Google does, https://www.google.com/
                          %% is chunked but HEAD gets Content-Length: 0.
                          %% The RFC is ambiguous so emulating Google is smart.
                          mochiweb_headers:enter("Content-Length", "0",
@@ -364,7 +364,7 @@ ok({ContentType, ResponseHeaders, Body}, {?MODULE, [_Socket, _Method, _RawPath, 
     HResponse = mochiweb_headers:make(ResponseHeaders),
     case THIS:get(range) of
         X when (X =:= undefined orelse X =:= fail) orelse Body =:= chunked ->
-            %% http://code.google.com/p/mochiweb/issues/detail?id=54
+            %% https://code.google.com/p/mochiweb/issues/detail?id=54
             %% Range header not supported when chunked, return 200 and provide
             %% full response.
             HResponse1 = mochiweb_headers:enter("Content-Type", ContentType,

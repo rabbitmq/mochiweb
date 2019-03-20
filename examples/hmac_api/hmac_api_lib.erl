@@ -190,7 +190,7 @@ get_header(Headers, Type) ->
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
                                                 % taken from Amazon docs
-%% http://docs.amazonwebservices.com/AmazonS3/latest/dev/index.html?RESTAuthentication.html
+%% https://docs.aws.amazon.com/AmazonS3/latest/dev/index.html?RESTAuthentication.html
 hash_test1(_) ->
     Sig = "DELETE\n\n\n\nx-amz-date:Tue, 27 Mar 2007 21:20:26 +0000\n/johnsmith/photos/puppy.jpg",
     Key = ?privatekey,
@@ -199,7 +199,7 @@ hash_test1(_) ->
     ?assertEqual(Expected, Hash).
 
 %% taken from Amazon docs
-%% http://docs.amazonwebservices.com/AmazonS3/latest/dev/index.html?RESTAuthentication.html
+%% https://docs.aws.amazon.com/AmazonS3/latest/dev/index.html?RESTAuthentication.html
 hash_test2(_) ->
     Sig = "GET\n\n\nTue, 27 Mar 2007 19:44:46 +0000\n/johnsmith/?acl",
     Key = "uV3F3YluFJax1cknvbcGwgjvx4QpvB+leU8dUj2o",
@@ -208,7 +208,7 @@ hash_test2(_) ->
     ?assertEqual(Expected, Hash).
 
 %% taken from Amazon docs
-%% http://docs.amazonwebservices.com/AmazonS3/latest/dev/index.html?RESTAuthentication.html
+%% https://docs.aws.amazon.com/AmazonS3/latest/dev/index.html?RESTAuthentication.html
 hash_test3(_) ->
     Sig = "GET\n\n\nWed, 28 Mar 2007 01:49:49 +0000\n/dictionary/"
         ++ "fran%C3%A7ais/pr%c3%a9f%c3%a8re",
@@ -218,7 +218,7 @@ hash_test3(_) ->
     ?assertEqual(Expected, Hash).
 
 signature_test1(_) ->
-    URL = "http://example.com:90/tongs/ya/bas",
+    URL = "https://example.com:90/tongs/ya/bas",
     Method = post,
     ContentMD5 = "",
     ContentType = "",
@@ -235,7 +235,7 @@ signature_test1(_) ->
     ?assertEqual(Expected, Sig).
 
 signature_test2(_) ->
-    URL = "http://example.com:90/tongs/ya/bas",
+    URL = "https://example.com:90/tongs/ya/bas",
     Method = get,
     ContentMD5 = "",
     ContentType = "",
@@ -252,7 +252,7 @@ signature_test2(_) ->
     ?assertEqual(Expected, Sig).
 
 signature_test3(_) ->
-    URL = "http://example.com:90/tongs/ya/bas",
+    URL = "https://example.com:90/tongs/ya/bas",
     Method = get,
     ContentMD5 = "",
     ContentType = "",
@@ -272,7 +272,7 @@ signature_test3(_) ->
     ?assertEqual(Expected, Sig).
 
 signature_test4(_) ->
-    URL = "http://example.com:90/tongs/ya/bas",
+    URL = "https://example.com:90/tongs/ya/bas",
     Method = get,
     ContentMD5 = "",
     ContentType = "",
@@ -292,7 +292,7 @@ signature_test4(_) ->
     ?assertEqual(Expected, Sig).
 
 signature_test5(_) ->
-    URL = "http://example.com:90/tongs/ya/bas",
+    URL = "https://example.com:90/tongs/ya/bas",
     Method = get,
     ContentMD5 = "",
     ContentType = "",
@@ -312,7 +312,7 @@ signature_test5(_) ->
     ?assertEqual(Expected, Sig).
 
 signature_test6(_) ->
-    URL = "http://example.com:90/tongs/ya/bas/?andy&zbish=bash&bosh=burp",
+    URL = "https://example.com:90/tongs/ya/bas/?andy&zbish=bash&bosh=burp",
     Method = get,
     ContentMD5 = "",
     ContentType = "",
@@ -330,7 +330,7 @@ signature_test6(_) ->
     ?assertEqual(Expected, Sig).
 
 signature_test7(_) ->
-    URL = "http://exAMPLE.Com:90/tONgs/ya/bas/?ANdy&ZBish=Bash&bOsh=burp",
+    URL = "https://exAMPLE.Com:90/tONgs/ya/bas/?ANdy&ZBish=Bash&bOsh=burp",
     Method = get,
     ContentMD5 = "",
     ContentType = "",
@@ -348,7 +348,7 @@ signature_test7(_) ->
     ?assertEqual(Expected, Sig).
 
 signature_test8(_) ->
-    URL = "http://exAMPLE.Com:90/tONgs/ya/bas/?ANdy&ZBish=Bash&bOsh=burp",
+    URL = "https://exAMPLE.Com:90/tONgs/ya/bas/?ANdy&ZBish=Bash&bOsh=burp",
     Method = get,
     ContentMD5 = "",
     ContentType = "",
@@ -367,7 +367,7 @@ signature_test8(_) ->
     ?assertEqual(Expected, Sig).
 
 signature_test9(_) ->
-    URL = "http://exAMPLE.Com:90/tONgs/ya/bas/?ANdy&ZBish=Bash&bOsh=burp",
+    URL = "https://exAMPLE.Com:90/tONgs/ya/bas/?ANdy&ZBish=Bash&bOsh=burp",
     Method = get,
     ContentMD5 = "",
     ContentType = "",
@@ -386,7 +386,7 @@ signature_test9(_) ->
     ?assertEqual(Expected, Sig).
 
 amazon_test1(_) ->
-    URL = "http://exAMPLE.Com:90/johnsmith/photos/puppy.jpg",
+    URL = "https://exAMPLE.Com:90/johnsmith/photos/puppy.jpg",
     Method = delete,
     ContentMD5 = "",
     ContentType = "",

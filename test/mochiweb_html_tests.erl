@@ -14,12 +14,12 @@ to_html_test() ->
                      {'=', <<"RAW!">>},
                      {comment, <<" comment! ">>}]}]}))),
     ?assertEqual(
-       <<"<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">">>,
+       <<"<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">">>,
        iolist_to_binary(
          mochiweb_html:to_html({doctype,
                   [<<"html">>, <<"PUBLIC">>,
                    <<"-//W3C//DTD XHTML 1.0 Transitional//EN">>,
-                   <<"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">>]}))),
+                   <<"https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">>]}))),
     ?assertEqual(
        <<"<html><?xml:namespace prefix=\"o\" ns=\"urn:schemas-microsoft-com:office:office\"?></html>">>,
        iolist_to_binary(
@@ -127,7 +127,7 @@ tokens_test() ->
     ok.
 
 parse_test() ->
-    D0 = <<"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">
+    D0 = <<"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"https://www.w3.org/TR/html4/strict.dtd\">
 <html>
  <head>
    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">
@@ -233,14 +233,14 @@ tokenize_attributes_test() ->
     ok.
 
 tokens2_test() ->
-    D0 = <<"<channel><title>from __future__ import *</title><link>http://bob.pythonmac.org</link><description>Bob's Rants</description></channel>">>,
+    D0 = <<"<channel><title>from __future__ import *</title><link>https://bob.ippoli.to/</link><description>Bob's Rants</description></channel>">>,
     ?assertEqual(
        [{start_tag,<<"channel">>,[],false},
         {start_tag,<<"title">>,[],false},
         {data,<<"from __future__ import *">>,false},
         {end_tag,<<"title">>},
         {start_tag,<<"link">>,[],true},
-        {data,<<"http://bob.pythonmac.org">>,false},
+        {data,<<"https://bob.ippoli.to/">>,false},
         {end_tag,<<"link">>},
         {start_tag,<<"description">>,[],false},
         {data,<<"Bob's Rants">>,false},
@@ -277,12 +277,12 @@ to_tokens_test() ->
     ok.
 
 parse2_test() ->
-    D0 = <<"<channel><title>from __future__ import *</title><link>http://bob.pythonmac.org<br>foo</link><description>Bob's Rants</description></channel>">>,
+    D0 = <<"<channel><title>from __future__ import *</title><link>https://bob.ippoli.to/<br>foo</link><description>Bob's Rants</description></channel>">>,
     ?assertEqual(
        {<<"channel">>,[],
         [{<<"title">>,[],[<<"from __future__ import *">>]},
          {<<"link">>,[],[
-                         <<"http://bob.pythonmac.org">>,
+                         <<"https://bob.ippoli.to/">>,
                          {<<"br">>,[],[]},
                          <<"foo">>]},
          {<<"description">>,[],[<<"Bob's Rants">>]}]},
@@ -391,15 +391,15 @@ destack_test() ->
 doctype_test() ->
     ?assertEqual(
        {<<"html">>,[],[{<<"head">>,[],[]}]},
-       mochiweb_html:parse("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">"
+       mochiweb_html:parse("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"https://www.w3.org/TR/html4/loose.dtd\">"
                            "<html><head></head></body></html>")),
-    %% http://code.google.com/p/mochiweb/issues/detail?id=52
+    %% https://code.google.com/p/mochiweb/issues/detail?id=52
     ?assertEqual(
        {<<"html">>,[],[{<<"head">>,[],[]}]},
        mochiweb_html:parse("<html>"
-                           "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">"
+                           "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"https://www.w3.org/TR/html4/loose.dtd\">"
                            "<head></head></body></html>")),
-    %% http://github.com/mochi/mochiweb/pull/13
+    %% https://github.com/mochi/mochiweb/pull/13
     ?assertEqual(
        {<<"html">>,[],[{<<"head">>,[],[]}]},
        mochiweb_html:parse("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\"/>"
@@ -408,7 +408,7 @@ doctype_test() ->
     ok.
 
 dumb_br_test() ->
-    %% http://code.google.com/p/mochiweb/issues/detail?id=71
+    %% https://code.google.com/p/mochiweb/issues/detail?id=71
     ?assertEqual(
        {<<"div">>,[],[{<<"br">>, [], []}, {<<"br">>, [], []}, <<"z">>]},
        mochiweb_html:parse("<div><br/><br/>z</br/></br/></div>")),
@@ -424,7 +424,7 @@ dumb_br_test() ->
 
 
 php_test() ->
-    %% http://code.google.com/p/mochiweb/issues/detail?id=71
+    %% https://code.google.com/p/mochiweb/issues/detail?id=71
     ?assertEqual(
        [{pi, <<"php\n">>}],
        mochiweb_html:tokens(

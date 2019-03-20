@@ -3,7 +3,7 @@
 %% your web app can push data to clients using a technique called comet long
 %% polling.  browsers make a request and your server waits to send a
 %% response until data is available.  see wikipedia for a better explanation:
-%% http://en.wikipedia.org/wiki/Comet_(programming)#Ajax_with_long_polling
+%% https://en.wikipedia.org/wiki/Comet_(programming)#Ajax_with_long_polling
 %%
 %% since the majority of your http handlers will be idle at any given moment,
 %% you might consider making them hibernate while they wait for more data from

@@ -26,7 +26,7 @@
 
 %% a couple of keys for testing
 %% these are taken from the document
-%% % http://docs.amazonwebservices.com/AmazonS3/latest/dev/index.html?RESTAuthentication.html
+%% % https://docs.aws.amazon.com/AmazonS3/latest/dev/index.html?RESTAuthentication.html
 %% they are not valid keys!
 -define(publickey,  "0PN5J17HBGZHT7JJ3X82").
 -define(privatekey, "uV3F3YluFJax1cknvbcGwgjvx4QpvB+leU8dUj2o").
